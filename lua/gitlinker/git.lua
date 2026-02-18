@@ -3,6 +3,8 @@ local M = {}
 local job = require("plenary.job")
 local path = require("plenary.path")
 
+M.git_timeout = 5000
+
 -- wrap the git command to do the right thing always
 local function git(args, cwd)
   local output
@@ -14,7 +16,7 @@ local function git(args, cwd)
   p:after_success(function(j)
     output = j:result()
   end)
-  p:sync()
+  p:sync(M.timeout)
   return output or {}
 end
 
