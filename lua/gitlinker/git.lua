@@ -16,7 +16,7 @@ local function git(args, cwd)
   p:after_success(function(j)
     output = j:result()
   end)
-  p:sync(M.timeout)
+  p:sync(M.git_timeout)
   return output or {}
 end
 
